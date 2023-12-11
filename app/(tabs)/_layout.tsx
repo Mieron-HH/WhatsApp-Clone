@@ -4,35 +4,43 @@ import { Pressable, useColorScheme, Platform } from "react-native";
 import {
 	Feather,
 	Ionicons,
-	MaterialIcons,
+	MaterialCommunityIcons,
 	AntDesign,
 } from "@expo/vector-icons";
 
 // COSNTANTS
-import Colors from "../../constants/Colors";
+import Colors from "@/constants/Colors";
+import { useTheme } from "@/libs/ThemeProvider";
 
 export const unstable_settings = {
 	initialRouteName: "index",
 };
 
 export default function TabLayout() {
-	const colorScheme = useColorScheme();
+	const { theme } = useTheme();
 
 	return (
 		<Tabs
 			screenOptions={{
-				tabBarActiveTintColor: Colors.tint,
+				tabBarActiveTintColor: theme?.colors.activeTabTintColor,
 				headerTitle: "",
-				tabBarActiveBackgroundColor: Colors.tabBarSelected,
+				tabBarActiveBackgroundColor: theme?.colors.activeTab,
 				tabBarStyle: {
-					height: Platform.OS === "ios" ? 85 : 65,
-					paddingBottom: Platform.OS === "ios" ? 30 : 8,
+					height: Platform.OS === "ios" ? 80 : 65,
+					paddingTop: 3,
+					paddingBottom: Platform.OS === "ios" ? 37 : 12,
+					backgroundColor: theme?.colors.background,
+					borderTopColor: theme?.colors.border,
 				},
-				tabBarItemStyle: { padding: 5, gap: 5, borderRadius: 5 },
+				tabBarItemStyle: {
+					borderRadius: 5,
+				},
 				tabBarLabelStyle: {
 					fontSize: 12,
 					fontFamily: "rob-m",
 				},
+				tabBarLabelPosition: "below-icon",
+				headerTransparent: true,
 			}}
 		>
 			<Tabs.Screen
@@ -59,8 +67,12 @@ export default function TabLayout() {
 				name="communities"
 				options={{
 					title: "Communities",
-					tabBarIcon: ({ color }) => (
-						<MaterialIcons name="groups" size={37} color={color} />
+					tabBarIcon: ({ color, size }) => (
+						<MaterialCommunityIcons
+							name="account-group-outline"
+							size={size}
+							color={color}
+						/>
 					),
 				}}
 			/>
@@ -70,21 +82,11 @@ export default function TabLayout() {
 				options={{
 					title: "Chats",
 					tabBarIcon: ({ color, size }) => (
-						<Ionicons name="md-chatbubbles-outline" size={size} color={color} />
-					),
-					headerRight: () => (
-						<Link href="/modal" asChild>
-							<Pressable>
-								{({ pressed }) => (
-									<FontAwesome
-										name="info-circle"
-										size={25}
-										color={Colors[colorScheme ?? "light"].text}
-										style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
-									/>
-								)}
-							</Pressable>
-						</Link>
+						<Ionicons
+							name="md-chatbubbles-outline"
+							size={size * 1.05}
+							color={color}
+						/>
 					),
 				}}
 			/>
