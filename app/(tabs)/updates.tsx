@@ -24,7 +24,7 @@ import { useTheme } from "@/libs/ThemeProvider";
 import defaultStyle from "@/constants/Styles";
 
 // DATA
-import ChannelsList from "@/assets/data/Channels";
+import ChannelsList from "@/libs/data/Channels";
 
 const Page = () => {
 	const colorScheme = useColorScheme();
@@ -70,6 +70,7 @@ const Page = () => {
 				<Text style={[defaultStyle.pageTitle, { color: theme?.colors.text }]}>
 					Updates
 				</Text>
+
 				<View
 					style={[
 						defaultStyle.searchContainer,
@@ -147,8 +148,8 @@ const Page = () => {
 									style={{
 										fontSize: 13,
 										fontFamily: "rob-m",
-										color: colorScheme === "light" ? "#bbb" : "#777",
-										letterSpacing: 1,
+										color: theme?.colors.secondaryText,
+										letterSpacing: 0.5,
 									}}
 								>
 									Add to my status

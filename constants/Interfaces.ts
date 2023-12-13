@@ -6,6 +6,7 @@ export interface Theme {
 		secondary: string;
 		card: string;
 		text: string;
+		secondaryText: string;
 		border: string;
 		notification: string;
 		tab: string;
