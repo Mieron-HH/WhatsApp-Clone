@@ -1,15 +1,13 @@
-import FontAwesome from "@expo/vector-icons/FontAwesome";
-import { Link, Tabs } from "expo-router";
-import { Pressable, useColorScheme, Platform } from "react-native";
+import { Tabs } from "expo-router";
+import { Platform } from "react-native";
 import {
-	Feather,
 	Ionicons,
 	MaterialCommunityIcons,
-	AntDesign,
+	Fontisto,
+	SimpleLineIcons,
 } from "@expo/vector-icons";
 
 // COSNTANTS
-import Colors from "@/constants/Colors";
 import { useTheme } from "@/libs/ThemeProvider";
 
 export const unstable_settings = {
@@ -47,9 +45,20 @@ export default function TabLayout() {
 				name="updates"
 				options={{
 					title: "Updates",
-					tabBarIcon: ({ color, size }) => (
-						<Feather name="message-circle" size={size} color={color} />
-					),
+					tabBarIcon: ({ color, size, focused }) =>
+						focused ? (
+							<MaterialCommunityIcons
+								name="message-badge"
+								size={size}
+								color={color}
+							/>
+						) : (
+							<MaterialCommunityIcons
+								name="message-badge-outline"
+								size={size}
+								color={color}
+							/>
+						),
 				}}
 			/>
 
@@ -57,9 +66,12 @@ export default function TabLayout() {
 				name="calls"
 				options={{
 					title: "Calls",
-					tabBarIcon: ({ color, size }) => (
-						<Ionicons name="md-call-outline" size={size} color={color} />
-					),
+					tabBarIcon: ({ color, size, focused }) =>
+						focused ? (
+							<Ionicons name="md-call" size={size} color={color} />
+						) : (
+							<Ionicons name="md-call-outline" size={size} color={color} />
+						),
 				}}
 			/>
 
@@ -67,13 +79,20 @@ export default function TabLayout() {
 				name="communities"
 				options={{
 					title: "Communities",
-					tabBarIcon: ({ color, size }) => (
-						<MaterialCommunityIcons
-							name="account-group-outline"
-							size={size}
-							color={color}
-						/>
-					),
+					tabBarIcon: ({ color, size, focused }) =>
+						focused ? (
+							<MaterialCommunityIcons
+								name="account-group"
+								size={size}
+								color={color}
+							/>
+						) : (
+							<MaterialCommunityIcons
+								name="account-group-outline"
+								size={size}
+								color={color}
+							/>
+						),
 				}}
 			/>
 
@@ -81,13 +100,16 @@ export default function TabLayout() {
 				name="index"
 				options={{
 					title: "Chats",
-					tabBarIcon: ({ color, size }) => (
-						<Ionicons
-							name="md-chatbubbles-outline"
-							size={size * 1.05}
-							color={color}
-						/>
-					),
+					tabBarIcon: ({ color, size, focused }) =>
+						focused ? (
+							<Ionicons name="md-chatbubbles" size={size} color={color} />
+						) : (
+							<Ionicons
+								name="md-chatbubbles-outline"
+								size={size * 1.05}
+								color={color}
+							/>
+						),
 				}}
 			/>
 
@@ -95,9 +117,12 @@ export default function TabLayout() {
 				name="settings"
 				options={{
 					title: "Settings",
-					tabBarIcon: ({ color, size }) => (
-						<AntDesign name="setting" size={size} color={color} />
-					),
+					tabBarIcon: ({ color, size, focused }) =>
+						focused ? (
+							<Fontisto name="player-settings" size={size} color={color} />
+						) : (
+							<SimpleLineIcons name="settings" size={size} color={color} />
+						),
 				}}
 			/>
 		</Tabs>
