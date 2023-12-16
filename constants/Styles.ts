@@ -10,17 +10,30 @@ const defaultStyle = StyleSheet.create({
 	},
 	header: {
 		height: 85,
+		paddingHorizontal: 20,
 		flexDirection: "row",
+		justifyContent: "space-between",
 		alignItems: "flex-end",
 	},
-	contentContainerStyle: {
+	headerIconContainer: {
+		width: 30,
+		height: 30,
+		justifyContent: "center",
+		alignItems: "center",
+		borderRadius: 30,
+	},
+	outerContentContainerStyle: {
+		flex: 1,
 		paddingTop: 20,
-		paddingBottom: 100,
+		paddingBottom: 70,
 	},
 	pageTitle: {
 		marginHorizontal: 20,
 		fontSize: 36,
 		fontFamily: "rob-b",
+	},
+	innerContentContainerStyle: {
+		paddingBottom: 30,
 	},
 	searchContainer: {
 		flex: 1,

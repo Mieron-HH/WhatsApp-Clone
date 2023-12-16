@@ -9,7 +9,7 @@ import {
 	TextInput,
 	Image,
 } from "react-native";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { Stack } from "expo-router";
 import {
 	SimpleLineIcons,
@@ -29,6 +29,13 @@ import ChannelsList from "@/libs/data/Channels";
 const Page = () => {
 	const colorScheme = useColorScheme();
 	const { theme } = useTheme();
+	const innerScrollRef = useRef<ScrollView>(null);
+
+	useEffect(() => {
+		if (innerScrollRef.current) {
+			innerScrollRef.current.scrollToEnd;
+		}
+	}, []);
 
 	return (
 		<View
@@ -41,17 +48,17 @@ const Page = () => {
 				options={{
 					header: () => (
 						<View style={defaultStyle.headerContainer}>
-							<View style={[defaultStyle.header, styles.header]}>
+							<View style={defaultStyle.header}>
 								<TouchableOpacity
 									style={[
-										styles.headerLeftIconContainer,
-										{ borderColor: theme?.colors.primary },
+										defaultStyle.headerIconContainer,
+										{ backgroundColor: theme?.colors.inputContainer },
 									]}
 								>
 									<SimpleLineIcons
 										name="options"
-										size={14}
-										color={theme?.colors.primary}
+										size={15}
+										color={theme?.colors.text}
 									/>
 								</TouchableOpacity>
 							</View>
@@ -62,8 +69,10 @@ const Page = () => {
 
 			<ScrollView
 				contentContainerStyle={[
-					defaultStyle.contentContainerStyle,
-					{ backgroundColor: theme?.colors.background },
+					defaultStyle.outerContentContainerStyle,
+					{
+						backgroundColor: theme?.colors.background,
+					},
 				]}
 				showsVerticalScrollIndicator={false}
 			>
@@ -71,217 +80,234 @@ const Page = () => {
 					Updates
 				</Text>
 
-				<View
-					style={[
-						defaultStyle.searchContainer,
-						{ backgroundColor: theme?.colors.inputContainer },
-					]}
+				<ScrollView
+					ref={innerScrollRef}
+					contentContainerStyle={defaultStyle.innerContentContainerStyle}
+					showsVerticalScrollIndicator={false}
 				>
-					<EvilIcons
-						name="search"
-						size={Platform.OS === "ios" ? 22 : 26}
-						color={"#888"}
-					/>
-
-					<TextInput
-						style={[
-							defaultStyle.searchInputField,
-							{ color: theme?.colors.text },
-						]}
-						placeholder="Search"
-						placeholderTextColor={"#888"}
-					/>
-				</View>
-
-				<View style={defaultStyle.block}>
-					<View style={defaultStyle.blockHeader}>
-						<Text
-							style={[
-								defaultStyle.blockHeaderTitle,
-								{ color: theme?.colors.text },
-							]}
-						>
-							Status
-						</Text>
-
-						<TouchableOpacity
-							style={[
-								styles.iconContainer,
-								{ backgroundColor: theme?.colors.inputContainer },
-							]}
-						>
-							<Feather name="plus" size={20} color={theme?.colors.primary} />
-						</TouchableOpacity>
-					</View>
-
 					<View
 						style={[
-							defaultStyle.blockBody,
-							{ backgroundColor: theme?.colors.secondary },
+							defaultStyle.searchContainer,
+							{ backgroundColor: theme?.colors.inputContainer },
 						]}
 					>
-						<TouchableOpacity style={styles.statusContainer}>
-							<View style={styles.avatarContainer}>
-								<View style={styles.statusAvatar} />
+						<EvilIcons
+							name="search"
+							size={Platform.OS === "ios" ? 22 : 26}
+							color={"#888"}
+						/>
 
-								<View style={styles.statusAvatarIcon}>
-									<AntDesign
-										name="pluscircle"
-										size={20}
-										color={theme?.colors.primary}
-									/>
-								</View>
-							</View>
-
-							<View style={styles.statusTextContainer}>
-								<Text
-									style={{
-										fontSize: 18,
-										fontFamily: "rob-b",
-										color: theme?.colors.text,
-									}}
-								>
-									My Status
-								</Text>
-
-								<Text
-									style={{
-										fontSize: 13,
-										fontFamily: "rob-m",
-										color: theme?.colors.secondaryText,
-										letterSpacing: 0.5,
-									}}
-								>
-									Add to my status
-								</Text>
-							</View>
-						</TouchableOpacity>
-					</View>
-				</View>
-
-				<View style={defaultStyle.block}>
-					<View style={defaultStyle.blockHeader}>
-						<Text
+						<TextInput
 							style={[
-								defaultStyle.blockHeaderTitle,
+								defaultStyle.searchInputField,
 								{ color: theme?.colors.text },
 							]}
-						>
-							Channels
-						</Text>
-
-						<TouchableOpacity
-							style={[
-								styles.iconContainer,
-								{ backgroundColor: theme?.colors.inputContainer },
-							]}
-						>
-							<Feather name="plus" size={20} color={theme?.colors.primary} />
-						</TouchableOpacity>
+							placeholder="Search"
+							placeholderTextColor={"#888"}
+						/>
 					</View>
 
-					<View
-						style={[
-							defaultStyle.blockBody,
-							colorScheme === "light" && {
-								backgroundColor: theme?.colors.secondary,
-							},
-							{ paddingVertical: 20 },
-						]}
-					>
-						<Text
-							style={{
-								paddingHorizontal: 20,
-								fontSize: 18,
-								fontFamily: "rob-m",
-								color: colorScheme === "light" ? "#bbb" : "#777",
-								lineHeight: 25,
-							}}
+					<View style={defaultStyle.block}>
+						<View style={defaultStyle.blockHeader}>
+							<Text
+								style={[
+									defaultStyle.blockHeaderTitle,
+									{ color: theme?.colors.text },
+								]}
+							>
+								Status
+							</Text>
+
+							<TouchableOpacity
+								style={[
+									styles.iconContainer,
+									{ backgroundColor: theme?.colors.inputContainer },
+								]}
+							>
+								<Feather name="plus" size={20} color={theme?.colors.text} />
+							</TouchableOpacity>
+						</View>
+
+						<View
+							style={[
+								defaultStyle.blockBody,
+								{ backgroundColor: theme?.colors.secondary },
+							]}
 						>
-							Stay updated on topics that matter to you. Find channels to follow
-							below.
-						</Text>
-
-						<ScrollView
-							horizontal
-							showsHorizontalScrollIndicator={false}
-							contentContainerStyle={styles.channelsContentContainerStyle}
-						>
-							{ChannelsList.map(({ name, uri }, index) => (
-								<TouchableOpacity
-									key={index}
-									style={[
-										styles.channelItem,
-										{ borderColor: theme?.colors.border },
-									]}
-								>
-									<View style={styles.avatarContainer}>
-										<Image source={uri} style={styles.channelAvatar} />
-
-										<View
-											style={[
-												styles.channelAvatarIcon,
-												{ backgroundColor: theme?.colors.background },
-											]}
-										>
-											<MaterialIcons
-												name="verified"
-												size={20}
-												color="#25D366"
-											/>
-										</View>
-									</View>
-
-									<Text
-										style={{
-											color: theme?.colors.text,
-											fontSize: 16,
-											fontFamily: "rob-m",
-										}}
-									>
-										{name}
-									</Text>
+							<TouchableOpacity style={styles.statusContainer}>
+								<View style={styles.avatarContainer}>
+									<View style={styles.statusAvatar} />
 
 									<View
 										style={[
-											styles.channelItemBtn,
-											{ backgroundColor: theme?.colors.activeTab },
+											styles.statusAvatarIcon,
+											{
+												backgroundColor:
+													colorScheme === "light" ? "#fff" : "#000",
+											},
 										]}
 									>
-										<Text
-											style={{
-												color: theme?.colors.activeTabTintColor,
-												fontSize: 16,
-												fontFamily: "rob-m",
-												textDecorationLine: "underline",
-											}}
-										>
-											Follow
-										</Text>
+										<AntDesign
+											name="pluscircle"
+											size={20}
+											color={theme?.colors.primary}
+										/>
 									</View>
-								</TouchableOpacity>
-							))}
-						</ScrollView>
+								</View>
 
-						<TouchableOpacity
+								<View style={styles.statusTextContainer}>
+									<Text
+										style={{
+											fontSize: 18,
+											fontFamily: "rob-b",
+											color: theme?.colors.text,
+										}}
+									>
+										My Status
+									</Text>
+
+									<Text
+										style={{
+											fontSize: 13,
+											fontFamily: "rob-m",
+											color: theme?.colors.secondaryText,
+											letterSpacing: 0.5,
+										}}
+									>
+										Add to my status
+									</Text>
+								</View>
+							</TouchableOpacity>
+						</View>
+					</View>
+
+					<View style={defaultStyle.block}>
+						<View style={defaultStyle.blockHeader}>
+							<Text
+								style={[
+									defaultStyle.blockHeaderTitle,
+									{ color: theme?.colors.text },
+								]}
+							>
+								Channels
+							</Text>
+
+							<TouchableOpacity
+								style={[
+									styles.iconContainer,
+									{ backgroundColor: theme?.colors.inputContainer },
+								]}
+							>
+								<Feather name="plus" size={20} color={theme?.colors.text} />
+							</TouchableOpacity>
+						</View>
+
+						<View
 							style={[
-								styles.exploreBtn,
-								{ backgroundColor: theme?.colors.primary },
+								defaultStyle.blockBody,
+								colorScheme === "light" && {
+									backgroundColor: theme?.colors.secondary,
+								},
+								{ paddingVertical: 20 },
 							]}
 						>
 							<Text
 								style={{
-									color: "#fff",
+									paddingHorizontal: 20,
 									fontSize: 18,
 									fontFamily: "rob-m",
-									textDecorationLine: "underline",
+									color: colorScheme === "light" ? "#bbb" : "#777",
+									lineHeight: 25,
 								}}
 							>
-								Explore more
+								Stay updated on topics that matter to you. Find channels to
+								follow below.
 							</Text>
-						</TouchableOpacity>
+
+							<ScrollView
+								horizontal
+								showsHorizontalScrollIndicator={false}
+								contentContainerStyle={styles.channelsContentContainerStyle}
+							>
+								{ChannelsList.map(({ name, uri }, index) => (
+									<TouchableOpacity
+										key={index}
+										style={[
+											styles.channelItem,
+											{ borderColor: theme?.colors.border },
+										]}
+									>
+										<View style={styles.avatarContainer}>
+											<Image source={uri} style={styles.channelAvatar} />
+
+											<View
+												style={[
+													styles.channelAvatarIcon,
+													{ backgroundColor: theme?.colors.background },
+												]}
+											>
+												<MaterialIcons
+													name="verified"
+													size={20}
+													color="#25D366"
+												/>
+											</View>
+										</View>
+
+										<Text
+											style={{
+												color: theme?.colors.text,
+												fontSize: 16,
+												fontFamily: "rob-m",
+											}}
+										>
+											{name}
+										</Text>
+
+										<View
+											style={[
+												styles.channelItemBtn,
+												{
+													backgroundColor:
+														colorScheme === "light" ? "#D6EFE2" : "#103720",
+												},
+											]}
+										>
+											<Text
+												style={{
+													color: theme?.colors.primary,
+													fontSize: 16,
+													fontFamily: "rob-m",
+													textDecorationLine: "underline",
+												}}
+											>
+												Follow
+											</Text>
+										</View>
+									</TouchableOpacity>
+								))}
+							</ScrollView>
+
+							<TouchableOpacity
+								style={[
+									styles.exploreBtn,
+									{ backgroundColor: theme?.colors.primary },
+								]}
+							>
+								<Text
+									style={{
+										color: colorScheme === "light" ? "#fff" : "#000",
+										fontSize: 18,
+										fontFamily: "rob-m",
+										textDecorationLine: "underline",
+									}}
+								>
+									Explore more
+								</Text>
+							</TouchableOpacity>
+						</View>
 					</View>
-				</View>
+				</ScrollView>
 			</ScrollView>
 		</View>
 	);
@@ -290,18 +316,6 @@ const Page = () => {
 export default Page;
 
 const styles = StyleSheet.create({
-	header: {
-		justifyContent: "flex-end",
-	},
-	headerLeftIconContainer: {
-		width: 23,
-		height: 23,
-		marginRight: 15,
-		justifyContent: "center",
-		alignItems: "center",
-		borderRadius: 30,
-		borderWidth: 1,
-	},
 	iconContainer: {
 		width: 28,
 		height: 28,
@@ -328,7 +342,6 @@ const styles = StyleSheet.create({
 		resizeMode: "contain",
 	},
 	statusAvatarIcon: {
-		backgroundColor: "#fff",
 		borderRadius: 100,
 		position: "absolute",
 		bottom: 1,
