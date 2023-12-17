@@ -1,14 +1,9 @@
+import { useEffect } from "react";
 import { useFonts } from "expo-font";
 import { SplashScreen, Stack } from "expo-router";
-import { useEffect } from "react";
-import { useColorScheme } from "react-native";
 
 // LIBS
 import { ThemeProvider } from "@/libs/ThemeProvider";
-
-// CONSTANTS
-import { DarkTheme, DefaultTheme } from "@/constants/Colors";
-import { Theme } from "../constants/Interfaces";
 
 export {
 	// Catch any errors thrown by the Layout component.
@@ -61,6 +56,15 @@ function RootLayoutNav() {
 		<ThemeProvider>
 			<Stack>
 				<Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+
+				<Stack.Screen
+					name="(modals)/communities"
+					options={{
+						presentation: "modal",
+						title: "",
+						headerTransparent: true,
+					}}
+				/>
 			</Stack>
 		</ThemeProvider>
 	);
