@@ -16,11 +16,11 @@ const defaultStyle = StyleSheet.create({
 		alignItems: "flex-end",
 	},
 	headerIconContainer: {
-		width: 30,
-		height: 30,
+		width: 27,
+		height: 27,
 		justifyContent: "center",
 		alignItems: "center",
-		borderRadius: 30,
+		borderRadius: 27,
 	},
 	outerContentContainerStyle: {
 		flex: 1,

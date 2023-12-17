@@ -3,6 +3,7 @@ export interface Theme {
 	colors: {
 		primary: string;
 		background: string;
+		modal: string;
 		secondary: string;
 		card: string;
 		text: string;
