@@ -25,7 +25,7 @@ const defaultStyle = StyleSheet.create({
 	outerContentContainerStyle: {
 		flex: 1,
 		paddingTop: 20,
-		paddingBottom: 70,
+		paddingBottom: 0,
 	},
 	pageTitle: {
 		marginHorizontal: 20,
@@ -33,7 +33,7 @@ const defaultStyle = StyleSheet.create({
 		fontFamily: "rob-b",
 	},
 	innerContentContainerStyle: {
-		paddingBottom: 30,
+		paddingBottom: 0,
 	},
 	searchContainer: {
 		flex: 1,

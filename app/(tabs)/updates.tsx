@@ -136,11 +136,11 @@ const Page = () => {
 						>
 							<TouchableOpacity style={styles.statusContainer}>
 								<View style={styles.avatarContainer}>
-									<View style={styles.statusAvatar} />
+									<View style={styles.avatar} />
 
 									<View
 										style={[
-											styles.statusAvatarIcon,
+											styles.avatarIcon,
 											{
 												backgroundColor:
 													colorScheme === "light" ? "#fff" : "#000",
@@ -334,14 +334,14 @@ const styles = StyleSheet.create({
 	avatarContainer: {
 		position: "relative",
 	},
-	statusAvatar: {
+	avatar: {
 		width: 60,
 		height: 60,
 		backgroundColor: "#555",
 		borderRadius: 60,
 		resizeMode: "contain",
 	},
-	statusAvatarIcon: {
+	avatarIcon: {
 		borderRadius: 100,
 		position: "absolute",
 		bottom: 1,

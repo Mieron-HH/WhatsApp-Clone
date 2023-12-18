@@ -28,7 +28,7 @@ export default function TabLayout() {
 					paddingTop: 3,
 					paddingBottom: Platform.OS === "ios" ? 35 : 12,
 					backgroundColor: theme?.colors.background,
-					borderTopColor: theme?.colors.border,
+					borderTopWidth: 0,
 				},
 				tabBarItemStyle: {
 					borderRadius: 5,

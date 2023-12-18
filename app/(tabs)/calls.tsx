@@ -354,7 +354,7 @@ const Page = () => {
 			<ScrollView
 				contentContainerStyle={[
 					defaultStyle.outerContentContainerStyle,
-					{ backgroundColor: theme?.colors.background, paddingBottom: 40 },
+					{ backgroundColor: theme?.colors.background, paddingBottom: 0 },
 				]}
 				showsVerticalScrollIndicator={false}
 			>
