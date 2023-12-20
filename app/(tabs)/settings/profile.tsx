@@ -148,7 +148,7 @@ const Page = () => {
 								fontFamily: "rob-r",
 							}}
 						>
-							+1 (510) 467-2799
+							+1 (987) 654-3210
 						</Text>
 					</View>
 				</View>
