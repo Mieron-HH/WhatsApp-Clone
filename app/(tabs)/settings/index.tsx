@@ -24,12 +24,18 @@ import defaultStyle from "@/constants/Styles";
 
 // LIBS
 import { useTheme } from "@/libs/ThemeProvider";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 const Page = () => {
 	const colorScheme = useColorScheme();
 	const { theme } = useTheme();
 	const innerScrollRef = useRef<ScrollView>(null);
+
+	useEffect(() => {
+		setTimeout(() => {
+			innerScrollRef.current?.scrollTo({ x: 0, y: 50, animated: false });
+		}, 10);
+	}, []);
 
 	return (
 		<View
@@ -64,7 +70,7 @@ const Page = () => {
 
 				<ScrollView
 					ref={innerScrollRef}
-					contentContainerStyle={defaultStyle.innerContentContainerStyle}
+					contentContainerStyle={{ paddingBottom: 170 }}
 					showsVerticalScrollIndicator={false}
 				>
 					<View

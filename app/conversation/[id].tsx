@@ -58,8 +58,8 @@ const Page = () => {
 
 	useEffect(() => {
 		setTimeout(() => {
-			scrollRef?.current?.scrollToEnd();
-		}, 50);
+			scrollRef?.current?.scrollToEnd({ animated: false });
+		}, 10);
 	}, []);
 
 	useEffect(() => {

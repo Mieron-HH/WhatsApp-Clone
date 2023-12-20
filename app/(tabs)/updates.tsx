@@ -19,6 +19,13 @@ import {
 	MaterialIcons,
 } from "@expo/vector-icons";
 import { useTheme } from "@/libs/ThemeProvider";
+import Animated, {
+	SlideInDown,
+	interpolate,
+	useAnimatedRef,
+	useAnimatedStyle,
+	useScrollViewOffset,
+} from "react-native-reanimated";
 
 // CONSTANTS
 import defaultStyle from "@/constants/Styles";
@@ -32,9 +39,9 @@ const Page = () => {
 	const innerScrollRef = useRef<ScrollView>(null);
 
 	useEffect(() => {
-		if (innerScrollRef.current) {
-			innerScrollRef.current.scrollToEnd;
-		}
+		setTimeout(() => {
+			innerScrollRef?.current?.scrollToEnd({ animated: false });
+		}, 10);
 	}, []);
 
 	return (
@@ -82,7 +89,7 @@ const Page = () => {
 
 				<ScrollView
 					ref={innerScrollRef}
-					contentContainerStyle={defaultStyle.innerContentContainerStyle}
+					contentContainerStyle={{ paddingBottom: 185 }}
 					showsVerticalScrollIndicator={false}
 				>
 					<View
@@ -171,8 +178,8 @@ const Page = () => {
 
 									<Text
 										style={{
-											fontSize: 13,
-											fontFamily: "rob-m",
+											fontSize: 14,
+											fontFamily: "rob-r",
 											color: theme?.colors.secondaryText,
 											letterSpacing: 0.5,
 										}}
@@ -279,7 +286,7 @@ const Page = () => {
 											<Text
 												style={{
 													color: theme?.colors.primary,
-													fontSize: 16,
+													fontSize: 15,
 													fontFamily: "rob-m",
 													textDecorationLine: "underline",
 												}}

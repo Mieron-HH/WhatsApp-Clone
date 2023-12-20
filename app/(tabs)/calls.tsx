@@ -34,9 +34,9 @@ const Page = () => {
 	const [callType, setCallType] = useState<"All" | "Missed">("All");
 
 	useEffect(() => {
-		if (innerScrollRef.current) {
-			innerScrollRef.current.scrollToEnd;
-		}
+		setTimeout(() => {
+			innerScrollRef.current?.scrollTo({ x: 0, y: 50, animated: false });
+		}, 10);
 	}, []);
 
 	const CallHistory = useMemo(
@@ -282,7 +282,10 @@ const Page = () => {
 									<View
 										style={[
 											styles.callTypeToggler,
-											{ backgroundColor: theme?.colors.inputContainer },
+											{
+												backgroundColor:
+													colorScheme === "light" ? "#E4E4E5" : "#232326",
+											},
 										]}
 									>
 										<TouchableOpacity
@@ -321,7 +324,7 @@ const Page = () => {
 													: styles.callTypeMissed,
 												{
 													backgroundColor:
-														colorScheme === "light" ? "#fff" : "#5B5B60",
+														colorScheme === "light" ? "#fff" : "#606065",
 												},
 											]}
 										>
@@ -364,7 +367,7 @@ const Page = () => {
 
 				<ScrollView
 					ref={innerScrollRef}
-					style={defaultStyle.innerContentContainerStyle}
+					contentContainerStyle={{ paddingBottom: 25 }}
 					showsVerticalScrollIndicator={false}
 				>
 					<View
@@ -576,7 +579,7 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 	},
 	callTypeToggler: {
-		width: 175,
+		width: 160,
 		height: 33,
 		padding: 2,
 		flexDirection: "row",
@@ -601,6 +604,14 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 		borderRadius: 5,
 		position: "absolute",
+		elevation: 3,
+		shadowRadius: 5,
+		shadowColor: "#555",
+		shadowOpacity: 0.2,
+		shadowOffset: {
+			width: 1,
+			height: 1,
+		},
 	},
 	callTypeAll: {
 		left: 2,

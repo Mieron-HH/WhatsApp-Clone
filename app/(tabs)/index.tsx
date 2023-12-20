@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import {
 	StyleSheet,
 	Text,
@@ -32,6 +32,12 @@ const Page = () => {
 	const colorScheme = useColorScheme();
 	const { theme } = useTheme();
 	const innerScrollRef = useRef<ScrollView>(null);
+
+	useEffect(() => {
+		setTimeout(() => {
+			innerScrollRef?.current?.scrollTo({ x: 0, y: 50, animated: false });
+		}, 10);
+	}, []);
 
 	const truncate = (text: string) => {
 		return text.length > 80 ? text.substring(0, 80) : text;
@@ -117,7 +123,7 @@ const Page = () => {
 
 				<ScrollView
 					ref={innerScrollRef}
-					style={defaultStyle.innerContentContainerStyle}
+					contentContainerStyle={{ paddingBottom: 25 }}
 					showsVerticalScrollIndicator={false}
 				>
 					<View style={styles.searchContainerOuter}>
@@ -125,7 +131,8 @@ const Page = () => {
 							style={[
 								defaultStyle.searchContainer,
 								{
-									backgroundColor: theme?.colors.inputContainer,
+									backgroundColor:
+										colorScheme === "light" ? "#F6F5F4" : "#222222",
 									marginTop: 0,
 									marginHorizontal: 0,
 								},
@@ -344,7 +351,7 @@ const styles = StyleSheet.create({
 	},
 	encryptionInfo: {
 		flex: 1,
-		marginTop: 5,
+		marginTop: 15,
 		flexDirection: "row",
 		justifyContent: "center",
 		alignItems: "center",

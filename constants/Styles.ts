@@ -32,9 +32,6 @@ const defaultStyle = StyleSheet.create({
 		fontSize: 36,
 		fontFamily: "rob-b",
 	},
-	innerContentContainerStyle: {
-		paddingBottom: 0,
-	},
 	searchContainer: {
 		flex: 1,
 		marginTop: 10,
