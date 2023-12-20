@@ -16,15 +16,15 @@ const defaultStyle = StyleSheet.create({
 		alignItems: "flex-end",
 	},
 	headerIconContainer: {
-		width: 27,
-		height: 27,
+		width: 29,
+		height: 29,
 		justifyContent: "center",
 		alignItems: "center",
-		borderRadius: 27,
+		borderRadius: 29,
 	},
 	outerContentContainerStyle: {
 		flex: 1,
-		paddingTop: 20,
+		paddingTop: 15,
 		paddingBottom: 0,
 	},
 	pageTitle: {
@@ -49,7 +49,7 @@ const defaultStyle = StyleSheet.create({
 		flex: 1,
 		paddingVertical: 6,
 		paddingLeft: 5,
-		fontSize: 19,
+		fontSize: 21,
 		fontFamily: "rob-r",
 	},
 	block: {

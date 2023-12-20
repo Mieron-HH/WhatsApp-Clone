@@ -6,6 +6,7 @@ import {
 	TouchableOpacity,
 	View,
 	useColorScheme,
+	Image,
 } from "react-native";
 import { Stack, useRouter } from "expo-router";
 import { Feather, Entypo } from "@expo/vector-icons";
@@ -85,7 +86,10 @@ const Page = () => {
 							{ borderBottomColor: theme?.colors.border },
 						]}
 					>
-						<View style={styles.avatar} />
+						<Image
+							source={require("@/assets/images/user-icon.png")}
+							style={styles.avatar}
+						/>
 
 						<Text
 							style={{
@@ -105,7 +109,7 @@ const Page = () => {
 							{
 								borderBottomWidth: StyleSheet.hairlineWidth,
 								borderBottomColor: theme?.colors.border,
-								marginBottom: 16,
+								marginBottom: 14,
 							},
 						]}
 					>
@@ -141,7 +145,7 @@ const Page = () => {
 							style={{
 								color: theme?.colors.text,
 								fontSize: 17,
-								fontFamily: "rob-m",
+								fontFamily: "rob-r",
 							}}
 						>
 							+1 (510) 467-2799
@@ -169,7 +173,7 @@ const Page = () => {
 							style={{
 								color: theme?.colors.text,
 								fontSize: 17,
-								fontFamily: "rob-mi",
+								fontFamily: "rob-r",
 							}}
 						>
 							"Royalty lies not in the bloodline, but in the charac..."

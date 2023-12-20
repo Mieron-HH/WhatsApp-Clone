@@ -14,5 +14,25 @@ export interface Theme {
 		activeTab: string;
 		activeTabTintColor: string;
 		inputContainer: string;
+		agent_1: string;
+		agent_2: string;
 	};
+}
+
+export interface Conversation {
+	id: string;
+	user: string;
+	user_profile: string;
+	last_conv: string;
+	content: Content[];
+}
+
+export interface Content {
+	message: string;
+	agent: Agent;
+}
+
+export enum Agent {
+	Agent1 = "agent_1",
+	Agent2 = "agent_2",
 }

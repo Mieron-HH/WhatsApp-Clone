@@ -14,6 +14,8 @@ export const DarkTheme = {
 		activeTab: "rgb(70, 70, 70)",
 		activeTabTintColor: "rgb(250, 250, 250)",
 		inputContainer: "rgb(28, 28, 30)",
+		agent_1: "rgb(20, 77, 55)",
+		agent_2: "rgb(35, 38, 38)",
 	},
 };
 
@@ -33,5 +35,7 @@ export const DefaultTheme = {
 		activeTab: "rgb(212, 212, 212)",
 		activeTabTintColor: "rgb(10, 10, 10)",
 		inputContainer: "rgb(227, 227, 232)",
+		agent_1: "rgb(208, 254, 207)",
+		agent_2: "rgb(255, 255, 255)",
 	},
 };

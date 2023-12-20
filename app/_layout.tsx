@@ -57,6 +57,8 @@ function RootLayoutNav() {
 			<Stack>
 				<Stack.Screen name="(tabs)" options={{ headerShown: false }} />
 
+				<Stack.Screen name="conversation/[id]" options={{}} />
+
 				<Stack.Screen
 					name="(modals)/communities"
 					options={{

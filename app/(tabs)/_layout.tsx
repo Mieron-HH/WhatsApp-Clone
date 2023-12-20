@@ -1,5 +1,5 @@
 import { Tabs } from "expo-router";
-import { Platform } from "react-native";
+import { Platform, useColorScheme } from "react-native";
 import {
 	Ionicons,
 	MaterialCommunityIcons,
@@ -15,6 +15,7 @@ export const unstable_settings = {
 };
 
 export default function TabLayout() {
+	const colorScheme = useColorScheme();
 	const { theme } = useTheme();
 
 	return (
@@ -59,6 +60,11 @@ export default function TabLayout() {
 								color={color}
 							/>
 						),
+					tabBarStyle: {
+						backgroundColor:
+							colorScheme === "light" ? "#fff" : theme?.colors.background,
+						borderTopWidth: 0,
+					},
 				}}
 			/>
 
@@ -116,6 +122,7 @@ export default function TabLayout() {
 			<Tabs.Screen
 				name="settings"
 				options={{
+					headerShown: false,
 					title: "Settings",
 					tabBarIcon: ({ color, size, focused }) =>
 						focused ? (

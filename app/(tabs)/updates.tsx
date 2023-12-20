@@ -136,7 +136,10 @@ const Page = () => {
 						>
 							<TouchableOpacity style={styles.statusContainer}>
 								<View style={styles.avatarContainer}>
-									<View style={styles.avatar} />
+									<Image
+										source={require("@/assets/images/user-icon.png")}
+										style={styles.avatar}
+									/>
 
 									<View
 										style={[

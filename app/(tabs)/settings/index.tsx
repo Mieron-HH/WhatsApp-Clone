@@ -7,6 +7,7 @@ import {
 	Platform,
 	TouchableOpacity,
 	useColorScheme,
+	Image,
 } from "react-native";
 import { Link, Stack } from "expo-router";
 import {
@@ -102,7 +103,10 @@ const Page = () => {
 						>
 							<Link href={"/settings/profile"} asChild>
 								<TouchableOpacity style={styles.userLeft}>
-									<View style={styles.avatar} />
+									<Image
+										source={require("@/assets/images/user-icon.png")}
+										style={styles.avatar}
+									/>
 
 									<View style={styles.userInfo}>
 										<Text
